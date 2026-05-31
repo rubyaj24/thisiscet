@@ -9,6 +9,7 @@ let shootingStars = [];
 let cloudsGroup;
 let cetGroup;
 let campusLights;
+let cetMeshes = [];
 let cetRevealValue = 0;
 let starBaseOpacity = 1;
 let cloudDescendOffset = 0;
@@ -492,6 +493,7 @@ async function loadCETModel() {
         child.material.transparent = true;
         child.material.opacity = 0;
         child.frustumCulled = false;
+        cetMeshes.push(child);
       }
     });
 
@@ -626,6 +628,10 @@ function createCETPlaceholder() {
   campusLights = createCampusLights();
   campusLights.visible = false;
   scene.add(campusLights);
+
+  cetGroup.traverse((child) => {
+    if (child.isMesh) cetMeshes.push(child);
+  });
 }
 
 function animateCET(dt) {

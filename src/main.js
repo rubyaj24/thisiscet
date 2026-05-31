@@ -10,6 +10,7 @@ init(canvas);
 
 const quoteEl = document.getElementById('hero-quote');
 const titleEl = document.getElementById('hero-title');
+const awardsCard = document.getElementById('awards-card');
 const fadeOverlay = document.getElementById('fade-overlay');
 
 const lenis = new Lenis({
@@ -42,6 +43,10 @@ ScrollTrigger.create({
     titleEl.style.opacity = titleFade;
     titleEl.style.transform = `translateY(${(1 - titleFade) * 20}px)`;
 
+    const cardFade = smoothstep(p, 0.55, 0.85, 0, 1);
+    awardsCard.style.opacity = cardFade;
+    awardsCard.style.transform = `translateX(-50%) translateY(${(1 - cardFade) * 15}px)`;
+
     const heroFade = smoothstep(p, 0.85, 1, 0, 1);
     fadeOverlay.style.opacity = heroFade;
   },
@@ -60,10 +65,59 @@ window.addEventListener('resize', () => {
   ScrollTrigger.refresh();
 });
 
+/* ── Section scroll animations ── */
+
+document.querySelectorAll('.section').forEach((section) => {
+  const image = section.querySelector('.section-image');
+  const content = section.querySelector('.section-content');
+
+  if (image) {
+    gsap.from(image, {
+      opacity: 0,
+      y: 40,
+      duration: 1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 85%',
+        end: 'top 40%',
+        scrub: 1,
+      },
+    });
+  }
+
+  if (content) {
+    gsap.from(content, {
+      opacity: 0,
+      y: 40,
+      duration: 1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 85%',
+        end: 'top 40%',
+        scrub: 1,
+      },
+    });
+  }
+});
+
+/* ── Smooth scroll anchor links ── */
+
+document.querySelectorAll('.footer-links a').forEach((link) => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      lenis.scrollTo(target);
+    }
+  });
+});
+
 let lastTime = 0;
 
 function animate(time) {
-  lenis.raf(time * 1000);
+  lenis.raf(time);
 
   try {
     const dt = lastTime ? Math.min((time - lastTime) / 1000, 0.05) : 0.016;
