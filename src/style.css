@@ -12,9 +12,24 @@ html {
   height: 100%;
 }
 
+/* ── Design Tokens ── */
+
+:root {
+  --paper: #F4EFE6;
+  --ink: #0B0D12;
+  --brown: #5A4F42;
+  --blue: #2B5876;
+  --olive: #8A7A1E;
+  --gold: #C9A227;
+  --moon: #C9D6E8;
+  --frame: #1E3A2F;
+}
+
+  /* Chapter layering */
+  .chapter, .welcome, .story-stage { position: relative; z-index: 10; background: var(--paper); }
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #0a0a0f;
+  background: var(--ink);
   color: #ffffff;
   overflow-x: hidden;
   min-height: 100%;
@@ -30,11 +45,15 @@ body {
   font-display: block;
 }
 
+
+
 /* ── Hero Section ── */
 
 .hero {
   position: relative;
   width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
 }
 
 #hero-canvas {
@@ -49,11 +68,11 @@ body {
 }
 
 .hero-overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 2;
   display: flex;
   align-items: center;
@@ -262,11 +281,21 @@ body {
 .section-title {
   font-family: 'Akira Expanded', sans-serif;
   font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 900;
+  font-weight: 600;
   letter-spacing: 0.06em;
   color: #ffffff;
   margin-bottom: 1.5rem;
   text-shadow: 0 0 40px rgba(255, 255, 255, 0.06);
+}
+
+.chapter-title {
+  font-family: 'Akira Expanded', sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #fffc;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
 }
 
 .section-text {
@@ -548,4 +577,1372 @@ body {
   border-radius: 1px;
 }
 
+/* ── Chapter Navigation ── */
 
+.chapter-nav {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  gap: 1rem;
+  pointer-events: auto;
+}
+
+.chapter-nav-prev,
+.chapter-nav-next {
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.chapter-nav-prev:hover,
+.chapter-nav-next:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.chapter-nav-prev:focus-visible,
+.chapter-nav-next:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.chapter-nav-prev[hidden],
+.chapter-nav-next[hidden] {
+  display: none;
+}
+
+.chapter-nav-label {
+  font-family: 'Akira Expanded', sans-serif;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: #fff;
+  white-space: nowrap;
+  margin: 0 1rem;
+}
+
+@media (max-width: 500px) {
+  .chapter-nav-label {
+    display: none;
+  }
+}
+
+/* ── Chapter Title Card ── */
+
+.chapter-title-card {
+  position: relative;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.chapter-title {
+  font-family: 'Akira Expanded', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  text-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+  margin-bottom: 0.5rem;
+}
+
+.chapter-nav-buttons .chapter-nav-prev,
+.chapter-nav-buttons .chapter-nav-next {
+  position: absolute;
+  top: 1.5rem;
+  width: 40px;
+  height: 40px;
+}
+
+/* Chapter 01: left, Chapter 08: right */
+.chapter-01 .chapter-nav-prev {
+  left: 1.5rem;
+}
+
+.chapter-08 .chapter-nav-next {
+  right: 1.5rem;
+}
+
+/* ── Photo Mosaic ── */
+
+.chapter-mosaic {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 3rem 0;
+}
+
+.mosaic-image {
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  position: relative;
+  transition: transform 0.1s;
+  will-change: transform;
+}
+
+.mosaic-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.2) 100%);
+  pointer-events: none;
+}
+
+
+/* ── Parallax Layer ── */
+
+.parallax-layer {
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.parallax-image {
+  transition: transform 0.2s cubic-bezier(0.04, 2.01, 0.34, 1.58);
+}
+
+.parallax-image:hover {
+  transform: scale(1.05) translateY(-8px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parallax-image {
+    transition: transform 0.01s linear;
+  }
+  .parallax-image:hover {
+    transform: scale(1.01);
+  }
+}
+
+.mosaic-image-01 { background: #1a1a2e; }
+.mosaic-image-02 { background: #16213e; }
+.mosaic-image-03 { background: #1e3a5f; }
+.mosaic-image-04 { background: #0f3460; }
+
+@media (max-width: 700px) {
+  .chapter-mosaic {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .mosaic-image {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ── About Block ── */
+
+.chapter-about {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-content {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.about-heading {
+  font-family: 'Akira Expanded', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
+.about-text {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.stop-list {
+  list-style: none;
+  padding: 0;
+  gap: 0.75rem;
+}
+
+.stop-list .stop-item {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.02em;
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.stop-list .stop-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.3rem;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+/* ── Facts Counters ── */
+
+.facts-counters {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.fact-item {
+  text-align: center;
+}
+
+.fact-number {
+  font-family: 'Akira Expanded', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  color: #fffc;
+  min-width: 80px;
+}
+
+.fact-label {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0.25rem;
+  letter-spacing: 0.02em;
+}
+
+/* ── Story Carousel (Chapter-level) ── */
+
+.chapter-story-carousel {
+  max-width: 800px;
+  margin: 3rem auto 0;
+}
+
+.story-carousel-inner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.story-carousel-item {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.story-carousel-item--active {
+  transform: scale(1.03);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.story-carousel-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.story-carousel-title {
+  font-family: 'Akira Expanded', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.story-carousel-subtitle {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.5rem;
+}
+
+.story-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.story-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.story-carousel-dot--active {
+  background: #fff;
+}
+
+@media (max-width: 500px) {
+  .story-carousel-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Stamp Toast ── */
+
+.stamp-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 0.75rem 1.25rem;
+  color: #fff;
+  z-index: 100;
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  min-width: 200px;
+  text-align: center;
+}
+
+.stamp-toast.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.stamp-toast svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+/* ── Reduced Motion Indicator ── */
+
+#reduced-motion-indicator {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background: #e53935;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  z-index: 200;
+}
+
+/* ── Chapter Inner Pattern ── */
+
+.chapter-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg view='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='blur'%3E%3CfeGaussianBlur stdDeviation='1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23blur)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.03;
+}
+
+/* ── Utility Strip (mobile, at bottom of chapter) ── */
+
+.utility-strip {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(10, 10, 15, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  z-index: 50;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .utility-strip {
+    display: block;
+  }
+}
+
+.utility-strip .sound-toggle {
+  flex: 1;
+  text-align: center;
+  margin-right: 1rem;
+}
+
+.utility-strip .map-link {
+  flex: 1;
+  text-align: center;
+  margin-left: 1rem;
+}
+
+.utility-strip .cta-btn {
+  flex: 1;
+  text-align: center;
+  margin: 0 0.5rem;
+}
+
+.utility-strip .chapter-count {
+  flex: 0 0 auto;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+/* ── Progress Rail (enhanced) ── */
+
+.progress-rail {
+  position: fixed;
+  left: 1rem;
+  top: 2rem;
+  height: calc(100vh - 4rem);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, transparent 100%);
+  z-index: 90;
+  transition: background 0.3s;
+}
+
+/* ── Chapter-specific accent colors ── */
+
+.chapter-01 .chapter-title { color: #fffc; }
+.chapter-02 .chapter-title { color: #48dbfb; }
+.chapter-03 .chapter-title { color: #f59e0b; }
+.chapter-04 .chapter-title { color: #ec4899; }
+.chapter-05 .chapter-title { color: #14b8a6; }
+.chapter-06 .chapter-title { color: #f472b6; }
+.chapter-07 .chapter-title { color: #6366f1; }
+.chapter-08 .chapter-title { color: #8b5cf6; }
+
+/* ── Focus visible states ── */
+
+.chapter-nav-prev:focus-visible,
+.chapter-nav-next:focus-visible,
+.story-carousel-dot:focus-visible,
+.stop-item:focus-visible {
+  outline: 2px solid #fffc;
+  outline-offset: 2px;
+}
+
+
+
+/* Hero → Postcard Transition (M2) */
+.paper-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-wrapper {
+  position: relative;
+  z-index: 1;
+  transform-origin: center center;
+  transition: transform 0.1s linear, border-radius 0.1s linear;
+}
+
+.hero-wrapper .hero-overlay {
+  position: relative;
+  z-index: 2;
+}
+
+/* Progress Rail */
+.progress-rail {
+  position: fixed;
+  left: 1rem;
+  top: 2rem;
+  bottom: 2rem;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold) 0%, transparent 0%);
+  z-index: 90;
+  pointer-events: none;
+}
+
+/* Sound Toggle */
+.sound-toggle {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  transition: background 0.2s;
+}
+
+.sound-toggle:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.sound-toggle svg {
+  width: 24px;
+  height: 24px;
+  stroke: white;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.sound-toggle.sound-on svg {
+  /* sound on icon */
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-wrapper {
+    transform: none !important;
+    border-radius: 0 !important;
+  }
+  .paper-bg {
+    opacity: 1 !important;
+  }
+}
+
+/* Chapter Nav - Exploring Mode */
+.chapter-nav {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.chapter-nav .chapter-nav-prev,
+.chapter-nav .chapter-nav-next {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.chapter-nav .chapter-nav-prev:hover,
+.chapter-nav .chapter-nav-next:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.chapter-nav .chapter-nav-prev svg,
+.chapter-nav .chapter-nav-next svg {
+  width: 20px;
+  height: 20px;
+  stroke: white;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.chapter-nav.is-exploring .chapter-nav-prev,
+.chapter-nav.is-exploring .chapter-nav-next {
+  display: flex;
+}
+
+.chapter-nav-label {
+  font-family: 'Akira Expanded', sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: white;
+  white-space: nowrap;
+}
+
+.chapter-progress {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}
+
+.progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.progress-dot.active {
+  background: var(--gold);
+  transform: scale(1.2);
+}
+
+.chapter-cta {
+  margin-left: 1rem;
+}
+
+.cta-btn {
+  padding: 0.5rem 1rem;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: 'Akira Expanded', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.cta-btn:hover {
+  background: #b8901f;
+  transform: scale(1.05);
+}
+
+/* Hero wrapper sizing */
+.hero-wrapper {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  transform-origin: center center;
+}
+
+.hero-wrapper .hero-overlay {
+  width: 100%;
+  height: 100%;
+}
+
+/* Paper bg under hero */
+.paper-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Hero canvas stays fixed */
+#hero-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Hero section stays pinned during transition */
+.hero {
+  position: relative;
+  z-index: 10;
+}
+
+/* Chapter sections sit on paper */
+.chapter,
+.welcome,
+.story-stage {
+  position: relative;
+  z-index: 20;
+  background: var(--paper);
+  min-height: 100vh;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+/* Ensure hero content is above canvas */
+.hero-overlay {
+  position: relative;
+  z-index: 2;
+}
+
+/* Reduced motion fallback */
+@media (prefers-reduced-motion: reduce) {
+  .hero-wrapper {
+    transform: none !important;
+    border-radius: 0 !important;
+  }
+  .paper-bg {
+    opacity: 1 !important;
+  }
+  .scroll-hint {
+    opacity: 1 !important;
+  }
+}
+
+/* Drifting Mosaic Cards (M8) */
+.chapter-mosaic {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  max-width: 800px;
+  margin: 3rem auto 0;
+}
+
+@media (min-width: 900px) {
+  .chapter-mosaic {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.mosaic-image {
+  position: relative;
+  aspect-ratio: 3/4;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--blue);
+  will-change: transform;
+  transition: transform 0.1s linear;
+  cursor: pointer;
+}
+
+.mosaic-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+
+/* Drifting card specific - data-speed controlled via JS */
+.mosaic-image.parallax-image:hover {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  opacity: 0.9;
+}
+.mosaic-image.parallax-image {
+  transform: translate3d(0, 0, 0);
+}
+
+/* Floating Moon (M9) */
+.floating-moon {
+  position: fixed;
+  right: 2rem;
+  bottom: 8rem;
+  width: 120px;
+  height: 120px;
+  z-index: 50;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.floating-moon canvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 
+    0 0 40px rgba(201, 214, 232, 0.4),
+    0 0 80px rgba(201, 214, 232, 0.2);
+  animation: moonFloat 8s ease-in-out infinite;
+}
+
+@keyframes moonFloat {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(15px, -10px) rotate(2deg); }
+  50% { transform: translate(-10px, 15px) rotate(-1deg); }
+  75% { transform: translate(10px, 10px) rotate(1deg); }
+}
+
+/* Explore 3D Pill (M10) */
+.explore-3d-pill {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem 0.75rem 0.75rem;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.explore-3d-pill:hover {
+  background: rgba(0, 0, 0, 0.9);
+  border-color: var(--gold);
+  transform: scale(1.02);
+}
+
+.explore-3d-pill .pill-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.explore-3d-pill .pill-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--ink);
+  fill: none;
+  stroke-width: 2;
+}
+
+.explore-3d-pill .pill-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.explore-3d-pill .pill-label {
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.explore-3d-pill .pill-title {
+  font-family: 'Akira Expanded', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: white;
+}
+
+.explore-3d-pill .pill-thumb {
+  width: 48px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--blue);
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .floating-moon canvas {
+    animation: none;
+  }
+  .mosaic-image {
+    transition: none;
+  }
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .floating-moon {
+    display: none;
+  }
+  .explore-3d-pill .pill-text {
+    display: none;
+  }
+  .explore-3d-pill {
+    padding: 0.5rem;
+  }
+  .chapter-mosaic {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+}
+
+/* Welcome Section (M4-M7) */
+.welcome {
+  position: relative;
+  z-index: 25;
+  min-height: 300vh; /* Long scroll for multi-stage reveal */
+}
+
+.welcome-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Topo texture background (M5) */
+.welcome-topo {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  z-index: 0;
+}
+
+/* Eyebrow: "WELCOME *To* CET" (M4) */
+.welcome-eyebrow {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+.welcome-eyebrow-caps {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  color: var(--brown);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.welcome-eyebrow-script {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1rem, 2.5vw, 2rem);
+  
+  font-weight: 400;
+  color: var(--brown);
+  letter-spacing: 0.05em;
+}
+
+/* Headline Container with Mask (M5-M6) */
+.welcome-headline-container {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1000px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.welcome-headline {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: pre-line;
+  margin: 0;
+}
+
+.welcome-headline-base {
+  color: var(--brown);
+  z-index: 1;
+}
+
+.welcome-headline-clipped {
+  color: var(--paper);
+  z-index: 2;
+  clip-path: url(#keralaClip);
+  -webkit-clip-path: url(#keralaClip);
+}
+
+/* Kerala Silhouette (M6) - rises from bottom */
+.kerala-silhouette {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+  transform: translateY(100%);
+  will-change: transform;
+}
+
+.kerala-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.kerala-path {
+  transform-origin: center bottom;
+  transform: scaleY(0);
+  transform-origin: center bottom;
+  will-change: transform;
+}
+
+/* Blue Fill (Stage B) (M7) */
+.welcome-blue-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--blue);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+  opacity: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Clip path definition for Kerala mask */
+.welcome-clip-path {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Scroll-triggered states via JS classes */
+.welcome.is-stage-a .kerala-silhouette {
+  transform: translateY(0);
+}
+
+.welcome.is-stage-a .kerala-path {
+  animation: keralaRise 1.5s ease-out forwards;
+}
+
+.welcome.is-stage-b {
+  --stage-b-progress: 1;
+}
+
+.welcome.is-stage-b .welcome-headline-clipped {
+  clip-path: inset(0 0 0 0); /* Full reveal when Kerala fills */
+}
+
+.welcome.is-stage-b .welcome-blue-fill {
+  opacity: 1;
+}
+
+@keyframes keralaRise {
+  from {
+    transform: scaleY(0);
+    transform-origin: center bottom;
+  }
+  to {
+    transform: scaleY(1);
+    transform-origin: center bottom;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .kerala-silhouette,
+  .kerala-path,
+  .welcome-blue-fill {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Story Screen (M12-M13) */
+.story-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.story-screen[hidden] {
+  display: none;
+}
+
+.story-screen-inner {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  height: 90vh;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Close button */
+.story-screen-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background 0.2s;
+}
+
+.story-screen-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.story-screen-close svg {
+  width: 24px;
+  height: 24px;
+  stroke: white;
+}
+
+/* STORY Shield Badge */
+.story-shield {
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.story-shield-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.story-shield-number {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: white;
+  background: var(--gold);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+}
+
+/* Rounded Hero Image */
+.story-hero {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 16/9;
+  border-radius: 24px;
+  overflow: hidden;
+  margin-top: 4rem;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+}
+
+#story-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story-hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.6) 100%);
+  pointer-events: none;
+}
+
+/* Giant Title */
+.story-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  margin: 2rem 0 1.5rem;
+  text-shadow: 0 4px 40px rgba(0,0,0,0.4);
+}
+
+/* READ Pill */
+.story-read-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+  margin-bottom: 3rem;
+}
+
+.story-read-pill:hover {
+  background: #b8901f;
+  transform: scale(1.02);
+}
+
+.story-read-pill svg {
+  flex-shrink: 0;
+  stroke: var(--ink);
+}
+
+/* Diamond Prev/Next */
+.story-nav-diamond {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.story-nav-diamond-btn {
+  width: 56px;
+  height: 56px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  transition: all 0.2s ease;
+}
+
+.story-nav-diamond-btn:hover {
+  background: var(--gold);
+  transform: scale(1.1);
+}
+
+.story-nav-diamond-btn svg {
+  width: 24px;
+  height: 24px;
+  stroke: white;
+}
+
+/* Wavy Trail (M13) */
+.story-trail {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 120px;
+  margin-top: auto;
+  padding-bottom: 2rem;
+}
+
+.trail-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.trail-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: trailDraw 2s ease-out forwards;
+}
+
+@keyframes trailDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Trail Stops */
+.trail-stops {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 2rem;
+  pointer-events: none;
+}
+
+.trail-stop {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--blue);
+  border: 2px solid var(--gold);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trail-stop::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s ease;
+}
+
+.trail-stop.active {
+  transform: scale(1.4);
+  background: var(--gold);
+  border-color: var(--ink);
+  box-shadow: 0 0 30px rgba(201, 162, 39, 0.5);
+}
+
+.trail-stop.active::before {
+  opacity: 1;
+  transform: scale(1.2);
+  animation: trailPulse 2s ease-out infinite;
+}
+
+@keyframes trailPulse {
+  0%, 100% { transform: scale(1.2); opacity: 1; }
+  50% { transform: scale(1.6); opacity: 0.5; }
+}
+
+.trail-stop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .trail-path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .trail-stop.active::before {
+    animation: none;
+  }
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .story-screen-inner {
+    padding: 1rem;
+    height: 100vh;
+  }
+  .story-title {
+    font-size: clamp(1.5rem, 10vw, 3rem);
+  }
+  .story-nav-diamond-btn {
+    width: 44px;
+    height: 44px;
+  }
+  .trail-stop {
+    width: 36px;
+    height: 36px;
+  }
+}

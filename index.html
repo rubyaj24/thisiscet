@@ -6,16 +6,41 @@
   <title>This is CET</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;600;800;900&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/style.css">
 </head>
 <body>
+  <!-- Chapter Navigation Header -->
+  <header class="chapter-nav" id="chapter-nav" aria-label="Chapter navigation">
+    <button class="chapter-nav-prev" aria-label="Previous chapter" role="button" hidden>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+    </button>
+    <span class="chapter-nav-label" id="chapter-nav-label">State 01: Origins</span>
+    <button class="chapter-nav-next" aria-label="Next chapter" role="button" hidden>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Reduced motion preference state -->
+  <div id="reduced-motion-indicator" aria-live="polite" hidden>
+    Reduced motion mode active
+  </div>
+
   <div id="preloader" role="status" aria-live="polite">
     <div class="preloader-inner">
       <div class="preloader-bar" aria-hidden="true"></div>
       <div class="preloader-text">Loading...</div>
     </div>
   </div>
+  <div class="site-frame" aria-hidden="true"></div>
+
+  <main id="main-content">
+    <!-- Chapter content will be generated/loaded by main.js -->
+  </main>
 
   <section class="hero" id="hero">
     <canvas id="hero-canvas"></canvas>
@@ -66,102 +91,620 @@
     <div class="spacer"></div>
   </section>
 
-  <section class="section" id="about">
-    <div class="section-inner">
-      <div class="section-image">
-        <div class="image-placeholder">
-          <svg viewBox="0 0 400 300" fill="none">
-            <rect width="400" height="300" rx="12" fill="rgba(255,255,255,0.03)"/>
-            <rect x="1" y="1" width="398" height="298" rx="11" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-            <path d="M160 130l40-30 40 30v50h-80v-50z" fill="rgba(255,255,255,0.06)"/>
-            <rect x="140" y="180" width="120" height="8" rx="4" fill="rgba(255,255,255,0.04)"/>
+
+  <!-- Welcome Section (M4-M7) -->
+  <section class="welcome" id="welcome" aria-label="Welcome to CET" data-stamp-unlocked="false">
+    <div class="welcome-inner">
+      <!-- Topo texture background -->
+      <div class="welcome-topo" aria-hidden="true"></div>
+      
+      <!-- Eyebrow: "WELCOME *To* CET" -->
+      <div class="welcome-eyebrow">
+        <span class="welcome-eyebrow-caps">WELCOME</span>
+        <span class="welcome-eyebrow-script">*To*</span>
+        <span class="welcome-eyebrow-caps">CET</span>
+      </div>
+      
+      <!-- Giant headline with Kerala mask -->
+      <div class="welcome-headline-container">
+        <h1 class="welcome-headline welcome-headline-base">FROM KULATHOOR TO THE MOON</h1>
+        <h1 class="welcome-headline welcome-headline-clipped">FROM KULATHOOR TO THE MOON</h1>
+      </div>
+      
+      <!-- Kerala silhouette SVG (rises from bottom) -->
+      <div class="kerala-silhouette" aria-hidden="true">
+        <svg class="kerala-svg" viewBox="0 0 800 600" preserveAspectRatio="none">
+          <path class="kerala-path" fill="#2B5876" d="M400,550 L400,500 L380,480 L360,490 L340,470 L330,450 L310,440 L290,420 L270,400 L260,380 L250,360 L240,340 L230,320 L220,300 L215,280 L210,260 L215,240 L225,220 L240,200 L260,185 L285,170 L310,160 L340,155 L370,155 L400,160 L430,155 L460,155 L490,160 L520,170 L545,185 L565,200 L575,220 L585,240 L590,260 L590,280 L585,300 L580,320 L570,340 L560,360 L550,380 L540,400 L530,420 L520,440 L510,450 L490,470 L470,490 L450,510 L430,520 L410,530 L400,550 Z" />
+        </svg>
+      </div>
+      
+      <!-- Blue grain fill (Stage B) -->
+      <div class="welcome-blue-fill" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- Chapter 01: Origins -->
+  <section class="chapter chapter-01" id="chapter-01" aria-label="Chapter Origins" data-stamp-unlocked="false">
+    <div class="chapter-inner">
+      <!-- Chapter title card -->
+      <div class="chapter-title-card">
+        <h2 class="chapter-title">State 01: Origins</h2>
+        <button class="chapter-nav-prev" aria-label="Previous chapter" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M15 18l-6-6 6-6"/>
           </svg>
+        </button>
+        <button class="chapter-nav-next" aria-label="Next chapter" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Photo mosaic -->
+      <div class="chapter-mosaic" aria-label="Chapter mosaic">
+        <div class="mosaic-image parallax-image mosaic-01" aria-hidden="true" data-speed="0.8" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+        <div class="mosaic-image parallax-image mosaic-02" aria-hidden="true" data-speed="1.0" style="background-image: url('https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+        <div class="mosaic-image parallax-image mosaic-03" aria-hidden="true" data-speed="1.2" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+        <div class="mosaic-image parallax-image mosaic-04" aria-hidden="true" data-speed="1.4" style="background-image: url('https://images.unsplash.com/photo-1517351164595-61138a6d1551?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+      </div>
+
+      <!-- About block with facts -->
+      <div class="chapter-about" aria-label="Chapter about section">
+        <div class="about-content">
+          <h3 class="about-heading">Founding Story</h3>
+          <p class="about-text">College of Engineering Trivandrum established in 1939, marking the beginning of a legacy of technical excellence in Kerala. From a modest beginning to becoming a NIRF Top 100 institution, CET's journey spans over eight decades of engineering education.</p>
+          <ul class="stop-list">
+            <li class="stop-item">1939: CET founded</li>
+            <li class="stop-item">First building constructed</li>
+            <li class="stop-item">NAAC A+ accreditation</li>
+            <li class="stop-item">NIRF Top 100 ranking</li>
+          </ul>
+        </div>
+        <div class="facts-counters">
+          <div class="fact-item">
+            <span class="fact-number" data-end="1939">1939</span>
+            <span class="fact-label">Since founding</span>
+          </div>
+          <div class="fact-item">
+            <span class="fact-number" data-end="100">100</span>
+            <span class="fact-label">NAAC A+</span>
+          </div>
+          <div class="fact-item">
+            <span class="fact-number" data-end="100">100</span>
+            <span class="fact-label">NBA Accredited</span>
+          </div>
+          <div class="fact-item">
+            <span class="fact-number" data-end="80">80+</span>
+            <span class="fact-label">Years of legacy</span>
+          </div>
         </div>
       </div>
-      <div class="section-content">
-        <h2 class="section-title">About CET</h2>
-        <p class="section-text">College of Engineering Trivandrum, established in 1939, is the premier engineering institution in Kerala. With a legacy spanning over eight decades, CET has been the cradle of technological innovation and academic excellence in the region.</p>
+
+      <!-- Story carousel -->
+      <div class="chapter-story-carousel" aria-label="Chapter story carousel">
+        <div class="story-carousel-inner" role="region" aria-label="Story carousel">
+          <!-- Items generated by main.js -->
+        </div>
+        <button class="story-carousel-nav prev" aria-label="Previous story" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="story-carousel-nav next" aria-label="Next story" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+        <div class="story-carousel-dots"></div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="festivals">
-    <div class="section-inner section-inner-reverse">
-      <div class="section-image">
-        <div class="image-placeholder">
-          <svg viewBox="0 0 400 300" fill="none">
-            <rect width="400" height="300" rx="12" fill="rgba(255,255,255,0.03)"/>
-            <rect x="1" y="1" width="398" height="298" rx="11" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-            <circle cx="200" cy="120" r="40" fill="rgba(255,255,255,0.05)"/>
-            <path d="M200 80l10 30h30l-25 18 10 30-25-18-25 18 10-30-25-18h30z" fill="rgba(255,255,255,0.06)"/>
-            <rect x="140" y="190" width="120" height="8" rx="4" fill="rgba(255,255,255,0.04)"/>
-            <rect x="160" y="208" width="80" height="6" rx="3" fill="rgba(255,255,255,0.03)"/>
+  <!-- Chapter 02: Academics -->
+  <section class="chapter chapter-02" id="chapter-02" aria-label="Chapter Academics" data-stamp-unlocked="false">
+    <div class="chapter-inner">
+      <div class="chapter-title-card">
+        <h2 class="chapter-title">State 02: Academics</h2>
+        <button class="chapter-nav-prev" aria-label="Previous chapter" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M15 18l-6-6 6-6"/>
           </svg>
+        </button>
+        <button class="chapter-nav-next" aria-label="Next chapter" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="chapter-mosaic" aria-label="Academics mosaic">
+        <div class="mosaic-image parallax-image mosaic-01" aria-hidden="true" data-speed="0.8" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+        <div class="mosaic-image parallax-image mosaic-02" aria-hidden="true" data-speed="1.0" style="background-image: url('https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+        <div class="mosaic-image parallax-image mosaic-03" aria-hidden="true" data-speed="1.2" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+      </div>
+      <div class="chapter-about" aria-label="Chapter about section">
+        <div class="about-content">
+          <h3 class="about-heading">Flagship Departments</h3>
+          <p class="about-text">CET comprises 12 departments across engineering, sciences, and management disciplines. From Computer Science to Architecture, each department drives research and innovation.</p>
+          <ul class="stop-list">
+            <li class="stop-item">Computer Science Engineering</li>
+            <li class="stop-item">Electronics & Communication</li>
+            <li class="stop-item">Mechanical Engineering</li>
+            <li class="stop-item">Electrical Engineering</li>
+          </ul>
+        </div>
+        <div class="facts-counters">
+          <div class="fact-item">
+            <span class="fact-number" data-end="12">12</span>
+            <span class="fact-label">Departments</span>
+          </div>
+          <div class="fact-item">
+            <span class="fact-number" data-end="5">5</span>
+            <span class="fact-label">PhD Programs</span>
+          </div>
         </div>
       </div>
-      <div class="section-content">
-        <h2 class="section-title">Festivals</h2>
-        <p class="section-text">From the cultural extravaganza of Dhwani to the technical brilliance of Drishti, CET's campus comes alive with vibrant festivals that showcase the talent and creativity of its students.</p>
+      <div class="chapter-story-carousel">
+        <div class="story-carousel-inner" role="region" aria-label="Story carousel">
+          <!-- Items generated by main.js -->
+        </div>
+        <button class="story-carousel-nav prev" aria-label="Previous story" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="story-carousel-nav next" aria-label="Next story" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+        <div class="story-carousel-dots"></div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="events">
-    <div class="section-inner">
-      <div class="section-image">
-        <div class="image-placeholder">
-          <svg viewBox="0 0 400 300" fill="none">
-            <rect width="400" height="300" rx="12" fill="rgba(255,255,255,0.03)"/>
-            <rect x="1" y="1" width="398" height="298" rx="11" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-            <rect x="140" y="100" width="120" height="80" rx="8" fill="rgba(255,255,255,0.05)"/>
-            <rect x="155" y="115" width="90" height="6" rx="3" fill="rgba(255,255,255,0.04)"/>
-            <rect x="155" y="128" width="70" height="6" rx="3" fill="rgba(255,255,255,0.03)"/>
-            <rect x="155" y="141" width="80" height="6" rx="3" fill="rgba(255,255,255,0.03)"/>
-            <circle cx="200" cy="210" r="25" fill="rgba(255,255,255,0.04)"/>
+  <!-- Chapter 03: Festivals (with three fest sub-pages) -->
+  <section class="chapter chapter-03" id="chapter-03" aria-label="Chapter Festivals" data-stamp-unlocked="false">
+    <div class="chapter-inner">
+      <div class="chapter-title-card">
+        <h2 class="chapter-title">State 03: Festivals</h2>
+        <button class="chapter-nav-prev" aria-label="Previous chapter" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M15 18l-6-6 6-6"/>
           </svg>
+        </button>
+        <button class="chapter-nav-next" aria-label="Next chapter" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="chapter-mosaic" aria-label="Festivals mosaic">
+        <div class="mosaic-image parallax-image mosaic-01" aria-hidden="true" data-speed="0.8" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+        <div class="mosaic-image parallax-image mosaic-02" aria-hidden="true" data-speed="1.0" style="background-image: url('https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+        <div class="mosaic-image parallax-image mosaic-03" aria-hidden="true" data-speed="1.2" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+      </div>
+      <div class="chapter-about" aria-label="Chapter about section">
+        <div class="about-content">
+          <h3 class="about-heading">CET's Three Festivals</h3>
+          <p class="about-text">CET's cultural calendar is highlighted by three distinctive festivals: Drishti (technical), Dhwani (cultural), and Disha (leadership). Each festival showcases student talent, creativity, and community spirit across the campus.</p>
+          <div class="verified-dates" aria-label="Festival verified dates">
+            <div class="verified-item">
+              <span class="verified-icon">📅</span>
+              <div>
+                <strong>Dhwani '26</strong><br>
+                <span>October 2–4, 2026</span>
+              </div>
+            </div>
+            <div class="verified-item">
+              <span class="verified-icon">📅</span>
+              <div>
+                <strong>Drishti 2026</strong><br>
+                <span>Technical festival dates published</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="facts-counters">
+          <div class="fact-item">
+            <span class="fact-number" data-end="3">3</span>
+            <span class="fact-label">Annual Festivals</span>
+          </div>
+          <div class="fact-item">
+            <span class="fact-number hidden"> data-end="80"></span><span class="fact-label">(data pending)</span>
+            <span class="fact-label">Student participation</span>
+          </div>
         </div>
       </div>
-      <div class="section-content">
-        <h2 class="section-title">Events</h2>
-        <p class="section-text">Guest lectures, hackathons, workshops, and symposiums — CET hosts a dynamic calendar of events throughout the year, bridging academia with industry and innovation.</p>
+      <div class="chapter-story-carousel">
+        <div class="story-carousel-inner" role="region" aria-label="Story carousel">
+          <!-- Items generated by main.js -->
+        </div>
+        <button class="story-carousel-nav prev" aria-label="Previous story" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="story-carousel-nav next" aria-label="Next story" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+        <div class="story-carousel-dots"></div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="academics">
-    <div class="section-inner section-inner-reverse">
-      <div class="section-image">
-        <div class="image-placeholder">
-          <svg viewBox="0 0 400 300" fill="none">
-            <rect width="400" height="300" rx="12" fill="rgba(255,255,255,0.03)"/>
-            <rect x="1" y="1" width="398" height="298" rx="11" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-            <path d="M200 90l60 40v60l-60 40-60-40v-60z" fill="rgba(255,255,255,0.05)"/>
-            <rect x="155" y="140" width="90" height="6" rx="3" fill="rgba(255,255,255,0.04)"/>
-            <rect x="165" y="154" width="70" height="6" rx="3" fill="rgba(255,255,255,0.03)"/>
-            <rect x="155" y="168" width="90" height="6" rx="3" fill="rgba(255,255,255,0.04)"/>
-            <path d="M200 90v60" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <!-- Chapter 04: Events -->
+  <section class="chapter chapter-04" id="chapter-04" aria-label="Chapter Events" data-stamp-unlocked="false">
+    <div class="chapter-inner">
+      <div class="chapter-title-card">
+        <h2 class="chapter-title">State 04: Events</h2>
+        <button class="chapter-nav-prev" aria-label="Previous chapter" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M15 18l-6-6 6-6"/>
           </svg>
+        </button>
+        <button class="chapter-nav-next" aria-label="Next chapter" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="chapter-mosaic" aria-label="Events mosaic">
+        <div class="mosaic-image parallax-image mosaic-01" aria-hidden="true" data-speed="0.8" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+        <div class="mosaic-image parallax-image mosaic-02" aria-hidden="true" data-speed="1.0" style="background-image: url('https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+        <div class="mosaic-image parallax-image mosaic-03" aria-hidden="true" data-speed="1.2" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+      </div>
+      <div class="chapter-about" aria-label="Chapter about section">
+        <div class="about-content">
+          <h3 class="about-heading">Lectures, Hackathons & Workshops</h3>
+          <p class="about-text">CET hosts a vibrant calendar of events including guest lectures from industry leaders, hackathons challenging students to build solutions, workshops skill-building sessions, and symposiums bridging academia and innovation.</p>
+          <ul class="stop-list">
+            <li class="stop-item">Guest lectures</li>
+            <li class="stop-item">Hackathons</li>
+            <li class="stop-item">Workshops</li>
+            <li class="stop-item">Symposiums</li>
+          </ul>
         </div>
+        <div class="facts-counters">
+          <div class="fact-item">
+            <span class="fact-number hidden"> data-end="200"></span><span class="fact-label">(data pending)</span>
+            <span class="fact-label">Events annually</span>
+          </div>
+          <div class="fact-item">
+            <span class="fact-number hidden"> data-end="50"></span><span class="fact-label">(data pending)</span>
+            <span class="fact-label">Guest speakers</span>
+          </div>
+        </div>
+      </div>
+      <div class="chapter-story-carousel">
+        <div class="story-carousel-inner" role="region" aria-label="Story carousel">
+          <!-- Items generated by main.js -->
+        </div>
+        <button class="story-carousel-nav prev" aria-label="Previous story" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="story-carousel-nav next" aria-label="Next story" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+        <div class="story-carousel-dots"></div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="sports">
-    <div class="section-inner">
-      <div class="section-image">
-        <div class="image-placeholder">
-          <svg viewBox="0 0 400 300" fill="none">
-            <rect width="400" height="300" rx="12" fill="rgba(255,255,255,0.03)"/>
-            <rect x="1" y="1" width="398" height="298" rx="11" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-            <circle cx="200" cy="130" r="30" fill="rgba(255,255,255,0.05)"/>
-            <path d="M185 150l-30 50h90l-30-50" fill="rgba(255,255,255,0.04)"/>
-            <rect x="140" y="210" width="120" height="8" rx="4" fill="rgba(255,255,255,0.04)"/>
+  <!-- Chapter 05: Sports -->
+  <section class="chapter chapter-05" id="chapter-05" aria-label="Chapter Sports" data-stamp-unlocked="false">
+    <div class="chapter-inner">
+      <div class="chapter-title-card">
+        <h2 class="chapter-title">State 05: Sports</h2>
+        <button class="chapter-nav-prev" aria-label="Previous chapter" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M15 18l-6-6 6-6"/>
           </svg>
+        </button>
+        <button class="chapter-nav-next" aria-label="Next chapter" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="chapter-mosaic" aria-label="Sports mosaic">
+        <div class="mosaic-image parallax-image mosaic-01" aria-hidden="true" data-speed="0.8" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+        <div class="mosaic-image parallax-image mosaic-02" aria-hidden="true" data-speed="1.0" style="background-image: url('https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+        <div class="mosaic-image parallax-image mosaic-03" aria-hidden="true" data-speed="1.2" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+      </div>
+      <div class="chapter-about" aria-label="Chapter about section">
+        <div class="about-content">
+          <h3 class="about-heading">Annual Sports & Grounds</h3>
+          <p class="about-text">CET's sprawling campus grounds nurture champions in athletics, football, cricket, basketball, and more. The annual sports meet is a highlight of the campus calendar, celebrating student athleticism and team spirit.</p>
+          <ul class="stop-list">
+            <li class="stop-item">Athletics track</li>
+            <li class="stop-item">Football ground</li>
+            <li class="stop-item">Basketball courts</li>
+            <li class="stop-item">Cricket pitch</li>
+          </ul>
+        </div>
+        <div class="facts-counters">
+          <div class="fact-item">
+            <span class="fact-number" data-end="1">1</span>
+            <span class="fact-label">Annual Sports Meet</span>
+          </div>
+          <div class="fact-item">
+            <span class="fact-number" data-end="8">8</span>
+            <span class="fact-label">Sports disciplines</span>
+          </div>
         </div>
       </div>
-      <div class="section-content">
-        <h2 class="section-title">Sports</h2>
-        <p class="section-text">CET's sprawling grounds and state-of-the-art facilities nurture champions in athletics, football, cricket, basketball, and more. The annual sports meet remains a highlight of the campus calendar.</p>
+      <div class="chapter-story-carousel">
+        <div class="story-carousel-inner" role="region" aria-label="Story carousel">
+          <!-- Items generated by main.js -->
+        </div>
+        <button class="story-carousel-nav prev" aria-label="Previous story" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="story-carousel-nav next" aria-label="Next story" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+        <div class="story-carousel-dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter 06: Alumni -->
+  <section class="chapter chapter-06" id="chapter-06" aria-label="Chapter Alumni" data-stamp-unlocked="false">
+    <div class="chapter-inner">
+      <div class="chapter-title-card">
+        <h2 class="chapter-title">State 06: Alumni</h2>
+        <button class="chapter-nav-prev" aria-label="Previous chapter" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="chapter-nav-next" aria-label="Next chapter" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="chapter-mosaic" aria-label="Alumni mosaic">
+        <div class="mosaic-image parallax-image mosaic-01" aria-hidden="true" data-speed="0.8" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+        <div class="mosaic-image parallax-image mosaic-02" aria-hidden="true" data-speed="1.0" style="background-image: url('https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+        <div class="mosaic-image parallax-image mosaic-03" aria-hidden="true" data-speed="1.2" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+      </div>
+      <div class="chapter-about" aria-label="Chapter about section">
+        <div class="about-content">
+          <h3 class="about-heading">CETians Who Went to the Moon</h3>
+          <p class="about-text">From silicon valley to space exploration, CET alumni have made their mark globally. The alumni network connects graduates across tech, research, public service, and the arts, inspiring current students with their journeys from campus to career.</p>
+          <ul class="stop-list">
+            <li class="stop-item">Tech industry leaders</li>
+            <li class="stop-item">Space research</li>
+            <li class="stop-item">Public service</li>
+            <li class="stop-item">Arts and culture</li>
+          </ul>
+        </div>
+        <div class="facts-counters">
+          <div class="fact-item">
+            <span class="fact-number" data-end="1">1</span>
+            <span class="fact-label">Moon mission alumni</span>
+          </div>
+          <div class="fact-item">
+            <span class="fact-number" data-end="50">50+</span>
+            <span class="fact-label">Global alumni network</span>
+          </div>
+        </div>
+      </div>
+      <div class="chapter-story-carousel">
+        <div class="story-carousel-inner" role="region" aria-label="Story carousel">
+          <!-- Items generated by main.js -->
+        </div>
+        <button class="story-carousel-nav prev" aria-label="Previous story" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="story-carousel-nav next" aria-label="Next story" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+        <div class="story-carousel-dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter 07: Campus Life -->
+  <section class="chapter chapter-07" id="chapter-07" aria-label="Chapter Campus Life" data-stamp-unlocked="false">
+    <div class="chapter-inner">
+      <div class="chapter-title-card">
+        <h2 class="chapter-title">State 07: Campus Life</h2>
+        <button class="chapter-nav-prev" aria-label="Previous chapter" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="chapter-nav-next" aria-label="Next chapter" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="chapter-mosaic" aria-label="Campus life mosaic">
+        <div class="mosaic-image parallax-image mosaic-01" aria-hidden="true" data-speed="0.8" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+        <div class="mosaic-image parallax-image mosaic-02" aria-hidden="true" data-speed="1.0" style="background-image: url('https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+        <div class="mosaic-image parallax-image mosaic-03" aria-hidden="true" data-speed="1.2" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+      </div>
+      <div class="chapter-about" aria-label="Chapter about section">
+        <div class="about-content">
+          <h3 class="about-heading">Hostels, Clubs & Food</h3>
+          <p class="about-text">From hostel life to student clubs, from the campus canteen to study spots — CET offers a vibrant campus life. Hangout spots, clubs, and cultural organizations enrich the student experience beyond classrooms.</p>
+          <ul class="stop-list">
+            <li class="stop-item">Hostel accommodation</li>
+            <li class="stop-item">Student clubs (30+)</li>
+            <li class="stop-item">Campus canteen</li>
+            <li class="stop-item">Library & study zones</li>
+          </ul>
+        </div>
+        <div class="facts-counters">
+          <div class="fact-item">
+            <span class="fact-number" data-end="30">30+</span>
+            <span class="fact-label">Student clubs</span>
+          </div>
+          <div class="fact-item">
+            <span class="fact-number" data-end="1">1</span>
+            <span class="fact-label">Canteen</span>
+          </div>
+        </div>
+      </div>
+      <div class="chapter-story-carousel">
+        <div class="story-carousel-inner" role="region" aria-label="Story carousel">
+          <!-- Items generated by main.js -->
+        </div>
+        <button class="story-carousel-nav prev" aria-label="Previous story" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="story-carousel-nav next" aria-label="Next story" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+        <div class="story-carousel-dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapter 08: Join / Contact -->
+  <section class="chapter chapter-08" id="chapter-08" aria-label="Chapter Join Contact" data-stamp-unlocked="false">
+    <div class="chapter-inner">
+      <div class="chapter-title-card">
+        <h2 class="chapter-title">State 08: Join / Contact</h2>
+        <button class="chapter-nav-prev" aria-label="Previous chapter" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="chapter-nav-next" aria-label="Next chapter" role="button" hidden>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="chapter-mosaic" aria-label="Join/contact mosaic">
+        <div class="mosaic-image parallax-image mosaic-01" aria-hidden="true" data-speed="0.8" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+        <div class="mosaic-image parallax-image mosaic-02" aria-hidden="true" data-speed="1.0" style="background-image: url('https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+        <div class="mosaic-image parallax-image mosaic-03" aria-hidden="true" data-speed="1.2" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=533&fit=crop'); background-size: cover; background-position: center;"></div>
+      </div>
+      <div class="chapter-about" aria-label="Chapter about section">
+        <div class="about-content">
+          <h3 class="about-heading">Admissions & Connect</h3>
+          <p class="about-text">Join the CET community. Whether you're a prospective student looking to apply, an alumnus wanting to connect, or a researcher seeking collaboration — find the information you need to engage with College of Engineering Trivandrum.</p>
+          <ul class="stop-list">
+            <li class="stop-item">Admissions information</li>
+            <li class="stop-item">Contact details</li>
+            <li class="stop-item">Campus visit</li>
+            <li class="stop-item">Alumni connection</li>
+          </ul>
+        </div>
+        <div class="facts-counters">
+          <div class="fact-item">
+            <span class="fact-number" data-end="1">1</span>
+            <span class="fact-label">Ways to connect</span>
+          </div>
+          <div class="fact-item">
+            <span class="fact-number hidden"> data-end="80000"></span><span class="fact-label">(data pending)</span>
+            <span class="fact-label">Alumni network</span>
+          </div>
+        </div>
+      </div>
+      <div class="chapter-story-carousel">
+        <div class="story-carousel-inner" role="region" aria-label="Story carousel">
+          <!-- Items generated by main.js -->
+        </div>
+        <button class="story-carousel-nav prev" aria-label="Previous story" role="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="story-carousel-nav next" aria-label="Next story" role="button" hidden>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+        <div class="story-carousel-dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Screen (M12-M13) -->
+  <section class="story-screen" id="story-screen" aria-label="Story view" hidden>
+    <div class="story-screen-inner">
+      <!-- Close button -->
+      <button class="story-screen-close" aria-label="Close story">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+      <!-- STORY shield badge -->
+      <div class="story-shield">
+        <span class="story-shield-label">STORY</span>
+        <span class="story-shield-number" id="story-number">01</span>
+      </div>
+
+      <!-- Rounded hero image -->
+      <div class="story-hero" id="story-hero">
+        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1600&h=900&fit=crop" alt="Story hero" id="story-hero-img">
+        <div class="story-hero-gradient"></div>
+      </div>
+
+      <!-- Giant title -->
+      <h1 class="story-title" id="story-title">FROM KULATHOOR TO THE MOON</h1>
+
+      <!-- READ pill -->
+      <a href="#" class="story-read-pill" id="story-read">
+        <span>READ THE STORY</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+
+      <!-- Diamond prev/next -->
+      <div class="story-nav-diamond">
+        <button class="story-nav-diamond-btn prev" aria-label="Previous story">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <button class="story-nav-diamond-btn next" aria-label="Next story">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Wavy trail line + circular stops (M13) -->
+      <div class="story-trail" id="story-trail">
+        <svg class="trail-svg" viewBox="0 0 800 120" preserveAspectRatio="none">
+          <defs>
+            <marker id="trail-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L9,3 z" fill="var(--gold)"/>
+            </marker>
+          </defs>
+          <path class="trail-path" d="M50,60 Q200,20 400,60 Q600,100 750,60" stroke="var(--gold)" stroke-width="2" fill="none" marker-end="url(#trail-arrow)"/>
+          <!-- Circular stops will be injected by JS -->
+        </svg>
+        <div class="trail-stops" id="trail-stops"></div>
       </div>
     </div>
   </section>
@@ -174,19 +717,21 @@
         <p class="footer-sub">College of Engineering Trivandrum</p>
       </div>
       <div class="footer-links">
-        <a href="#about">About</a>
-        <a href="#festivals">Festivals</a>
-        <a href="#events">Events</a>
-        <a href="#academics">Academics</a>
-        <a href="#sports">Sports</a>
-        <a href="#contacts">Contact</a>
+        <a href="#chapter-01">Origins</a>
+        <a href="#chapter-02">Academics</a>
+        <a href="#chapter-03">Festivals</a>
+        <a href="#chapter-04">Events</a>
+        <a href="#chapter-05">Sports</a>
+        <a href="#chapter-06">Alumni</a>
+        <a href="#chapter-07">Campus Life</a>
+        <a href="#chapter-08">Join/Contact</a>
       </div>
       <div class="footer-contact">
         <p class="footer-contact-line">Kulathoor, Sreekaryam</p>
         <p class="footer-contact-line">Thiruvananthapuram - 695016</p>
         <p class="footer-contact-line">Kerala, India</p>
-        <p class="footer-contact-line footer-contact-link">info@cet.ac.in</p>
-        <p class="footer-contact-line footer-contact-link">+91 471 251 5555</p>
+        <p class="footer-contact-line info-link">info@cet.ac.in</p>
+        <p class="footer-contact-line info-link">+91 471 251 5555</p>
       </div>
       <div class="footer-social">
         <a href="#" class="social-link" aria-label="Instagram">
@@ -215,6 +760,11 @@
             <path d="M12 16v-3a2 2 0 014 0v3"/>
           </svg>
         </a>
+        <a href="#" class="social-link sound-toggle" aria-label="Sound toggle" onclick="toggleSound()" title="Toggle sound">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M16.5 16.5l2.121-2.121L16.5 16.5M12 7l-4.5 4.5-1.421-1.421L12 7M19.653 19.653L18.28 18.28M7 12l4.5 4.5 1.421-1.421L7 12"/>
+          </svg>
+        </a>
       </div>
       <div class="footer-bottom">
         <div class="footer-divider"></div>
@@ -225,6 +775,12 @@
 
   <div class="fade-overlay" id="fade-overlay"></div>
 
+  <div class="stamp-toast" id="stamp-toast" aria-live="polite">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M20 6L9 17l-5-5"/>
+    </svg>
+    <span class="stamp-toast-message">New stamp unlocked!</span>
+  </div>
+
   <script type="module" src="/src/main.js"></script>
 </body>
-</html>
